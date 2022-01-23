@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 
 import { database } from './Config/Database';
+import { UserRouter } from './Modules/Users/Controllers/UserRoutes';
+import { ProjectRouter } from './Modules/Projects/Controllers/ProjectRoutes';
+import { UserReportRouter } from './Modules/UserReports/Controllers/UserReportRoutes';
 import { ErrorHandler } from './Utils/ErrorHandlerMiddleware';
 
 database();
@@ -12,9 +15,10 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-//app.use('/api', router);
+app.use('/api', UserRouter, ProjectRouter, UserReportRouter);
+
 app.use(ErrorHandler);
 
 export const server = app.listen(process.env.PORT || PORT, () => {
     console.log(`Server on port ${PORT}`);
-})
+});

@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import { logger } from '../../../Utils/Logger';
 
-import * as UserService from '../Services/UserService';
+import * as UserReportService from '../Services/UserReportService';
 
-export const findAllUsers = async (req: Request, res: Response, next: NextFunction) => {
+export const findAllUserReports = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { query } = req;       
-        const response = await UserService.findAllUsers(Number(query.page));
+        const response = await UserReportService.findAllUserReports(Number(query.page));
         res.send(response);
 
     } catch (error: any) {

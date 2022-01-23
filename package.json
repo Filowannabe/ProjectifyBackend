@@ -10,6 +10,9 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "cross-env NODE_ENV=development ts-node-dev src/index.ts",
+    "migrate": "cross-env NODE_ENV=development npx knex migrate:latest --knexfile src/Config/knexfile.ts",
+    "migrate:down": "cross-env NODE_ENV=development npx knex migrate:down  --knexfile src/Config/knexfile.ts",
+    "migrate:rollback:all": "cross-env NODE_ENV=development npx knex migrate:rollback --all  --knexfile src/Config/knexfile.ts",
     "test": "cross-env NODE_ENV=test jest --verbose  --detectOpenHandles --silent",
     "test:watch": "cross-env NODE_ENV=test npm run test -- --watch"
   },
