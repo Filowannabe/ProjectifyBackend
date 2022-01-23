@@ -1,6 +1,5 @@
-import { Model, ModelObject } from 'objection';
 
-export default class UserDAO extends Model {
+export class User  {
     id?:number;
     first_name!: string;       
     second_name?: string;     
@@ -9,9 +8,4 @@ export default class UserDAO extends Model {
     email!: string;
     password!: string;
     inactive!: boolean;
-
-    static get tableName() {
-        return 'users';
-    }
 }
-export type UserShape = ModelObject<UserDAO>;
