@@ -1,17 +1,12 @@
 import { Model, ModelObject } from 'objection';
 
-export default class Project extends Model {
+export default class ProjectDAO extends Model {
     id?:number;
-    first_name!: string;       
-    second_name!: string;     
-    first_lastname!: string;  
-    second_lastname!: string;   
-    email!: string;
-    password!: string;
-    inactive!: boolean;
+    name!: string;       
+    description!: string;     
 
     static get tableName() {
         return 'projects';
     }
 }
-export type ProjectShape = ModelObject<Project>;
+export type ProjectShape = ModelObject<ProjectDAO>;

@@ -11,7 +11,7 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
 
     } catch (error: any) {
         const status = error.status || 500;
-        logger.error(`Error in userController.findAllUsers: ${error.message}`);
+        logger.error(`Error in userController.createUser: ${error.message}`);
         res.status(status).send({ 'status': error.status, 'message': error.message }).end();
         return next(error)
     }
