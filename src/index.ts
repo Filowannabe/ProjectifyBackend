@@ -1,7 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 
+import { database } from './Config/Database';
 import { ErrorHandler } from './Utils/ErrorHandlerMiddleware';
+
+database();
 
 export const app = express();
 const PORT = 3000;
