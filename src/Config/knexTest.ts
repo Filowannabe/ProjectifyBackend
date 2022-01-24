@@ -18,6 +18,7 @@ const TestConfig: IKnexConfig = {
         },
         pool: { min: 1, max: 2 },
         migrations: {
+            directory: './Migrations',
             tableName: "knex_migrations"
         },
         seeds: {
