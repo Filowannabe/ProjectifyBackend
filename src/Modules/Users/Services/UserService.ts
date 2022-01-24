@@ -4,7 +4,7 @@ import * as EmailValidator from 'email-validator';
 import { User } from "../models/Entities/User"
 import { UserResponse } from "../models/Responses/UserResponse"
 
-import { BusinessError, NotFoundError, UnauthorizedError } from "../../../Utils/ErrorHandlerMiddleware";
+import { BusinessError } from "../../../Utils/ErrorHandlerMiddleware";
 import { hashSomePassowrd } from '../../../Utils/Security/SecurityUtils';
 
 
@@ -36,7 +36,7 @@ export const findAllUsers = async (page: number): Promise<UserResponse> => {
     repositoryRequest = {
         results: repositoryRequest!!.results.map((it: UserResponse) => {
             return {
-                id:it.id,
+                id: it.id,
                 first_name: it.first_name,
                 first_lastname: it.first_lastname,
                 email: it.email,

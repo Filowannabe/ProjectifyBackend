@@ -2,7 +2,7 @@ import * as UserRepository from '../Repositories/ProjectRepository';
 
 import { Project } from "../models/Entities/Project";
 
-import { BusinessError, NotFoundError, UnauthorizedError } from "../../../Utils/ErrorHandlerMiddleware";
+import { BusinessError } from "../../../Utils/ErrorHandlerMiddleware";
 
 
 

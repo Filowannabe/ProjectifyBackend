@@ -82,5 +82,80 @@ describe('Flow for reports HAPPY path', () => {
         expect(body.results).toBeTruthy()
     })
 
+    test('find all reports by user id test', async () => {
+
+        const userToCreate: User = {
+            first_name: "Andres",
+            second_name: "",
+            first_lastname: "Corredor",
+            second_lastname: "Castro",
+            email: "test4@e.com",
+            password: "1233456",
+            inactive: false
+        }
+
+        const userRequest = await api.post(`/api/users`)
+            .set('Authorization', `Bearer ${tokenBody.token}`)
+            .send(userToCreate)
+            .expect(200);
+
+        const response = await api.get(`/api/user-reports/user/${userRequest.body.id}?page=0`)
+            .set('Authorization', `Bearer ${tokenBody.token}`)
+            .expect(200);
+
+        const { body } = response
+        expect(body.results).toBeTruthy()
+    })
+
+    test('Update percentage in report test', async () => {
+        const userToCreate: User = {
+            first_name: "Andres",
+            second_name: "",
+            first_lastname: "Corredor",
+            second_lastname: "Castro",
+            email: "test4@e.com",
+            password: "1233456",
+            inactive: false
+        }
+
+        const newProject: Project = {
+            name: "Project x 2",
+            description: "An amazing project"
+        }
+
+        const userRequest = await api.post(`/api/users`)
+            .set('Authorization', `Bearer ${tokenBody.token}`)
+            .send(userToCreate)
+            .expect(200);
+
+        const projectRequest = await api.post(`/api/projects`)
+            .set('Authorization', `Bearer ${tokenBody.token}`)
+            .send(newProject)
+            .expect(200);
+
+
+        const reportToCreate: UserReport = {
+            user_id: userRequest.body.id,
+            project_id: projectRequest.body.id,
+            dedication_percentage: 100
+        }
+
+        const reportRequest = await api.post(`/api/user-reports`)
+            .set('Authorization', `Bearer ${tokenBody.token}`)
+            .send(reportToCreate)
+            .expect(200);
+
+        expect(reportRequest.body.dedication_percentage).toBe(reportToCreate.dedication_percentage);
+
+        const percentage: any = {
+            newPercentage: 20
+        }
+
+        await api.patch(`/api/user-reports/${reportRequest.body.id}`)
+            .set('Authorization', `Bearer ${tokenBody.token}`)
+            .send(percentage)
+            .expect(200);
+    })
+
     afterAll(() => { server.close() })
 })

@@ -47,12 +47,12 @@ export const updateUserReport = async (reportId: number, newPercentage: number) 
         dedication_percentage: newPercentage,
     }
 
-    UserReportRepository.updatePercentage(reportId, userToUpdate)
+    await UserReportRepository.updatePercentage(reportId, userToUpdate)
 }
 
 export const findAllReportsByUserId = async (userId: number, page: number): Promise<object> => {
     const validPage = page || page >= 0 ? page : 0;
-    return await UserReportRepository.findAllReportsByUserId(userId,validPage)
+    return await UserReportRepository.findAllReportsByUserId(userId, validPage)
 }
 
 export const findAllUserReports = async (page: number): Promise<object> => {

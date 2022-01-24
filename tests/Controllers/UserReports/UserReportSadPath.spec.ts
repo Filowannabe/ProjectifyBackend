@@ -130,5 +130,16 @@ describe('Flow for users SAD path', () => {
             .expect(412, { "status": 412, "message": "Report already exist on this week" })
     })
 
+    test('Update report and is not founded', async () => {
+        const percentage: any = {
+            newPercentage: 20
+        }
+
+        await api.patch(`/api/user-reports/123`)
+            .set('Authorization', `Bearer ${tokenBody.token}`)
+            .send(percentage)
+            .expect(404, { "status": 404, "message": "Report was not founded" })
+    })
+
     afterAll(() => { server.close() })
 })
