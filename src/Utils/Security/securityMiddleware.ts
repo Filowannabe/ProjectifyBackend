@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { Request, Response, NextFunction } from 'express';
 import { logger } from '../Logger';
 import { UnauthorizedError } from "../ErrorHandlerMiddleware";

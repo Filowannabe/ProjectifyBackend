@@ -34,7 +34,7 @@ export const findAllUsers = async (page: number): Promise<UserResponse> => {
     let repositoryRequest: any = await UserRepository.findAllUsers(validPage)
 
     repositoryRequest = {
-        results: repositoryRequest!!.results.map((it: UserResponse) => {
+        results: repositoryRequest?.results.map((it: UserResponse) => {
             return {
                 id: it.id,
                 first_name: it.first_name,
