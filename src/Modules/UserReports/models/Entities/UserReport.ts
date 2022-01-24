@@ -4,4 +4,5 @@ export class UserReport {
     project_id!: number;
     week_number?:number;
     dedication_percentage!: number;
+    created_at?:string;
 }

@@ -24,11 +24,30 @@ export const createUserReport = async (userReport: UserReport): Promise<UserRepo
     const newReport: UserReport = {
         user_id: userReport.user_id,
         project_id: userReport.project_id,
-        week_number:weekNumber,
+        week_number: weekNumber,
         dedication_percentage: userReport.dedication_percentage
 
     }
     return await UserReportRepository.createUserReport(newReport)
+}
+
+export const updateUserReport = async (reportId: number, newPercentage: number) => {
+
+    const reportToFind = await UserReportRepository.findById(reportId)
+
+    if (!reportToFind) throw new NotFoundError('Report was not founded');
+
+    const currentMonth: any = DateTime.now().month
+    const reportCreationMonth = DateTime.fromJSDate(new Date(reportToFind.created_at ? reportToFind.created_at : '')).month
+
+    if (currentMonth !== reportCreationMonth) throw new BusinessError('Updatable date is now expired');
+
+    const userToUpdate: UserReport = {
+        ...reportToFind,
+        dedication_percentage: newPercentage,
+    }
+
+    UserReportRepository.updatePercentage(reportId, userToUpdate)
 }
 
 export const findAllUserReports = async (page: number): Promise<object> => {

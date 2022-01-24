@@ -9,7 +9,7 @@ export default class UserReportDAO extends Model {
     project_id!: number;
     dedication_percentage!: number;
     week_number?:number;
-    created_at!:string;
+    created_at?:string;
 
     static get tableName() {
         return 'user_reports';

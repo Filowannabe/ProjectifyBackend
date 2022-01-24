@@ -5,4 +5,5 @@ import * as SecurityMiddleware from '../../../Utils/Security/securityMiddleware'
 export const UserReportRouter = express.Router();
 
 UserReportRouter.get('/user-reports', SecurityMiddleware.securityMiddleware, UserReportController.findAllUserReports)
-UserReportRouter.post('/user-reports', SecurityMiddleware.securityMiddleware, UserReportController.createUserReport)
+UserReportRouter.post('/user-reports', UserReportController.createUserReport)
+UserReportRouter.patch('/user-reports/:reportId',  UserReportController.updateUserReport)

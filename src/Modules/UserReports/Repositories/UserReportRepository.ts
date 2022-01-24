@@ -10,4 +10,8 @@ export const findByWeekNumberAndIds = async (weekNumber: number, user_id: number
     .where('project_id', project_id)
     .first();
 
+export const findById = async (id: number): Promise<UserReport> => await UserReportDAO.query().where('id', id).first();
+
+export const updatePercentage = async (id: number, user: UserReport) => await UserReportDAO.query().findById(id).patch(user)
+
 export const findAllUserReports = async (page: number): Promise<object> => await UserReportDAO.query().page(page, 10)
