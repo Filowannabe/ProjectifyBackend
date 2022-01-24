@@ -7,3 +7,4 @@ export const UserReportRouter = express.Router();
 UserReportRouter.get('/user-reports', SecurityMiddleware.securityMiddleware, UserReportController.findAllUserReports)
 UserReportRouter.post('/user-reports', UserReportController.createUserReport)
 UserReportRouter.patch('/user-reports/:reportId',  UserReportController.updateUserReport)
+UserReportRouter.get('/user-reports/user/:userId',  UserReportController.findAllReportsByUserId)

@@ -50,6 +50,11 @@ export const updateUserReport = async (reportId: number, newPercentage: number) 
     UserReportRepository.updatePercentage(reportId, userToUpdate)
 }
 
+export const findAllReportsByUserId = async (userId: number, page: number): Promise<object> => {
+    const validPage = page || page >= 0 ? page : 0;
+    return await UserReportRepository.findAllReportsByUserId(userId,validPage)
+}
+
 export const findAllUserReports = async (page: number): Promise<object> => {
 
     const validPage = page || page >= 0 ? page : 0;

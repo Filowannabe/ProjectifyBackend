@@ -14,4 +14,6 @@ export const findById = async (id: number): Promise<UserReport> => await UserRep
 
 export const updatePercentage = async (id: number, user: UserReport) => await UserReportDAO.query().findById(id).patch(user)
 
+export const findAllReportsByUserId = async (userId: number, page: number): Promise<object> => await UserReportDAO.query().where('user_id', userId).page(page, 10)
+
 export const findAllUserReports = async (page: number): Promise<object> => await UserReportDAO.query().page(page, 10)

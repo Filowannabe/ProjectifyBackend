@@ -4,10 +4,10 @@ import { Knex } from "knex";
 export async function up(knex: Knex): Promise<void> {
     return knex.schema.createTable('user_reports', table => {
         table.increments('id').unique().notNullable().primary();
-        table.integer('user_id').references('id').inTable('users');
-        table.integer('project_id').references('id').inTable('projects');
-        table.specificType('week_number', 'smallint');
-        table.specificType('dedication_percentage', 'smallint');
+        table.integer('user_id').references('id').inTable('users').notNullable();
+        table.integer('project_id').references('id').inTable('projects').notNullable();
+        table.specificType('week_number', 'smallint').notNullable();
+        table.specificType('dedication_percentage', 'smallint').notNullable();
         table.timestamps(true, true);
     });
 }
