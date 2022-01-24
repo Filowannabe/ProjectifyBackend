@@ -14,7 +14,7 @@
 <li><div style="display:flex; justify-content:space-between; width:150px;">PostgreSQL <img width="40px" src="https://download.logo.wine/logo/PostgreSQL/PostgreSQL-Logo.wine.png"></img></div></li>
 </ul>
 
-## Backend scripts:
+## Local environment
 
 > Dependencies instalation:
 ---
@@ -53,3 +53,7 @@ If you are running it on local server, remember that is very important to have t
 <li>Rollback all test migrations: <strong>npm run migrate:rollback:all:test</strong></li>
 <li>Test seeds: <strong>npm run seed:test</strong></li>
 </ul>
+
+```
+In order to run npm run dev or npm run test, be sure to already have the respective database updated with all migrations -> npm run migrate or npm run migrate:test.
+```
