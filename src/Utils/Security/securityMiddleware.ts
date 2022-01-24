@@ -5,14 +5,14 @@ import { UnauthorizedError } from "../ErrorHandlerMiddleware";
 const jwt = require('jsonwebtoken');
 
 export const securityMiddleware = (req: Request, res: Response, next: NextFunction) => {
+    const auth = req.header('Authorization')
+
+    if (!auth) throw new UnauthorizedError('Permission denied')
+
+    if (!auth.startsWith('Bearer')) {
+        if (!auth.startsWith('bearer')) throw new UnauthorizedError('Missing Bearer')
+    }
     try {
-        const auth = req.header('Authorization')
-
-        if (!auth) throw new UnauthorizedError('Permission denied')
-
-        if (!auth.startsWith('Bearer')) {
-            if (!auth.startsWith('bearer')) throw new UnauthorizedError('Missing Bearer')
-        }
         const token = auth.split(' ')[1]
         const payload = jwt.verify(token, process.env.JWT_SECRET);
 
