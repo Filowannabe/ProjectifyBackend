@@ -113,7 +113,7 @@ GET
 ---
 > In Local environment (Make sure to have the env files):
 
-!["Referemce"](./screenshots/envreference.png)
+!["Referemce"](./Screenshots/envreference.png)
 ```
 One env file at root level and the other at Config level but same
 content:
