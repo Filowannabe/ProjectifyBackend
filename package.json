@@ -13,8 +13,14 @@
     "migrate": "cross-env NODE_ENV=development npx knex migrate:latest --knexfile src/Config/knexfile.ts",
     "migrate:down": "cross-env NODE_ENV=development npx knex migrate:down  --knexfile src/Config/knexfile.ts",
     "migrate:rollback:all": "cross-env NODE_ENV=development npx knex migrate:rollback --all  --knexfile src/Config/knexfile.ts",
+    "seed": "cross-env NODE_ENV=development npx knex seed:run --knexfile src/Config/knexTest.ts",
+    "migrate:test": "cross-env NODE_ENV=test npx knex migrate:latest --knexfile src/Config/knexTest.ts",
+    "migrate:down:test": "cross-env NODE_ENV=test npx knex migrate:down  --knexfile src/Config/knexTest.ts",
+    "migrate:rollback:all:test": "cross-env NODE_ENV=test npx knex migrate:rollback --all --knexfile src/Config/knexTest.ts",
+    "seed:test": "cross-env NODE_ENV=test npx knex seed:run --knexfile src/Config/knexTest.ts",
     "test": "cross-env NODE_ENV=test jest --verbose  --detectOpenHandles --silent",
-    "test:watch": "cross-env NODE_ENV=test npm run test -- --watch"
+    "test:watch": "cross-env NODE_ENV=test npm run test -- --watch",
+    "test:coverage":"cross-env NODE_ENV=test npx jest --coverageReporters='text-summary'"
   },
   "author": "Felipe",
   "license": "ISC",

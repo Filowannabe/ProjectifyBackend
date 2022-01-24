@@ -7,15 +7,15 @@ interface IKnexConfig {
     [key: string]: Knex.Config;
 }
 
-const devConfig: IKnexConfig = {
-    development: {
+const TestConfig: IKnexConfig = {
+    test: {
         client: 'pg',
         connection: {
             host: process.env.DB_HOST,
             port: Number(process.env.DB_PORT),
             user: process.env.DB_USER,
             password: process.env.DB_PASSWORD,
-            database: process.env.DB_NAME,
+            database: process.env.DB_NAME_TEST,
         },
         pool: { min: 1, max: 2 },
         migrations: {
@@ -28,4 +28,4 @@ const devConfig: IKnexConfig = {
     }
 }
 
-export default devConfig
+export default TestConfig
