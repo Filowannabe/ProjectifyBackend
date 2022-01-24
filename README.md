@@ -10,6 +10,10 @@ Heroku (Recomended)
 
 Local
 ```
+## Tests
+!["Referemce"](./Screenshots/tests.png)
+!["Referemce"](./Screenshots/amount.png)
+!["Referemce"](./Screenshots/coverage_summary.png)
 ## Heroku environment
 > REST requests:
 
