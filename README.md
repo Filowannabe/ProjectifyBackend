@@ -18,6 +18,7 @@ In order to use a token required request, you need to set Authorization header
 
 Authorization: Bearer <valid token>
 ```
+!["Referemce"](./Screenshots/auth.png)
 POST
 * **Create user**
     * https://projectifyback.herokuapp.com/api/users
