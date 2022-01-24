@@ -19,7 +19,7 @@ export const login = async (email: string, password: string): Promise<Token> => 
 
     if (!userToFind) throw new UnauthorizedError('Invalid credentials')
 
-    if (userToFind.inactive) throw new UnauthorizedError('User deactivate')
+    if (userToFind.inactive) throw new UnauthorizedError('User deactivated')
 
     if (!await comparePassword(password, userToFind.password)) throw new UnauthorizedError('Invalid credentials');
 
@@ -34,7 +34,7 @@ export const login = async (email: string, password: string): Promise<Token> => 
     return { "token": token };
 }
 
-export const validateToken = async (token: string): Promise<object> => {
+export const validateToken = async (token: string): Promise<UserResponse> => {
     try {
         const payload = jwt.verify(token, JWT_SECRET);
         return await payload;
