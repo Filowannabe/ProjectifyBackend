@@ -20,7 +20,7 @@
     "seed:test": "cross-env NODE_ENV=test npx knex seed:run --knexfile src/Config/knexTest.ts",
     "test": "cross-env NODE_ENV=test jest --verbose  --detectOpenHandles --silent",
     "test:watch": "cross-env NODE_ENV=test npm run test -- --watch",
-    "test:coverage":"cross-env NODE_ENV=test npx jest --coverageReporters"
+    "test:coverage": "cross-env NODE_ENV=test npx jest --coverageReporters"
   },
   "author": "Felipe",
   "license": "ISC",
