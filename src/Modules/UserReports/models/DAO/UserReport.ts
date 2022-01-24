@@ -3,11 +3,13 @@ import User from '../../../Users/models/DAO/User';
 import Project from '../../../Projects/models/DAO/Project';
 
 
-export default class UserReport extends Model {
-    id!: number;
+export default class UserReportDAO extends Model {
+    id?: number;
     user_id!: number;
     project_id!: number;
     dedication_percentage!: number;
+    week_number!:number;
+    created_at!:string;
 
     static get tableName() {
         return 'user_reports';
@@ -34,4 +36,4 @@ export default class UserReport extends Model {
         }
     }
 }
-export type UserReportShape = ModelObject<UserReport>;
+export type UserReportShape = ModelObject<UserReportDAO>;

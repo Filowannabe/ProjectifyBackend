@@ -6,6 +6,7 @@ export async function up(knex: Knex): Promise<void> {
         table.increments('id').unique().notNullable().primary();
         table.integer('user_id').references('id').inTable('users');
         table.integer('project_id').references('id').inTable('projects');
+        table.specificType('week_number', 'smallint');
         table.specificType('dedication_percentage', 'smallint');
         table.timestamps(true, true);
     });
