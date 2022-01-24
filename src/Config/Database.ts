@@ -4,6 +4,9 @@ import testConfig from './knexTest';
 import { Model } from 'objection';
 
 export function database() {
-    const db = knex(process.env.NODE_ENV === 'test' ? testConfig.test : devConfig.development);
+    let db: any = {}
+    if (process.env.NODE_ENV === 'test') db = knex(testConfig.test);
+    else if (process.env.NODE_ENV === 'development') db = knex(devConfig.development);
+    else db = knex(devConfig.production);
     Model.knex(db);
 }
