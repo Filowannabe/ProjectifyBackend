@@ -25,6 +25,23 @@ const devConfig: IKnexConfig = {
             directory: "./Seeds"
         },
         ...knexSnakeCaseMappers
+    },
+    production: {
+        client: 'pg',
+        connection: {
+            connectionString: process.env.DATABASE_URL,
+            ssl: {
+                rejectUnauthorized: false
+            }
+        },
+        pool: { min: 1, max: 2 },
+        migrations: {
+            tableName: "knex_migrations"
+        },
+        seeds: {
+            directory: "./seeds"
+        },
+        ...knexSnakeCaseMappers
     }
 }
 
