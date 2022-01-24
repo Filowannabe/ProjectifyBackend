@@ -1,16 +1,18 @@
 import { clearAll } from '../../DBHelper';
 import { app, server } from '../../../src/index'
-import { User } from '../../../src/Modules/Users/models/Entities/User'
+import { UserReport } from '../../../src/Modules/UserReports/models/Entities/UserReport'
 
 import supertest from 'supertest'
 import { hashSomePassowrd } from '../../../src/Utils/Security/SecurityUtils';
 import UserDAO from '../../../src/Modules/Users/models/DAO/User';
+import { Project } from '../../../src/Modules/Projects/models/Entities/Project';
+import { User } from '../../../src/Modules/Users/models/Entities/User';
 
 const api = supertest(app)
 const jwt = require('jsonwebtoken');
 let tokenBody: any
 
-describe('Flow for users HAPPY path', () => {
+describe('Flow for reports HAPPY path', () => {
     beforeEach(async () => {
         await clearAll();
         const userToCreate: any = {
@@ -31,36 +33,52 @@ describe('Flow for users HAPPY path', () => {
         tokenBody = { "token": value }
     });
 
-    test('create user test', async () => {
-        await clearAll();
-
+    test('create user report test', async () => {
         const userToCreate: User = {
             first_name: "Andres",
             second_name: "",
-            first_lastname: "lastname",
-            second_lastname: "lastname",
+            first_lastname: "Corredor",
+            second_lastname: "Castro",
             email: "test4@e.com",
             password: "1233456",
             inactive: false
         }
 
-        const response = await api.post(`/api/users`)
+        const newProject: Project = {
+            name: "Project x 2",
+            description: "An amazing project"
+        }
+
+        const userRequest = await api.post(`/api/users`)
             .set('Authorization', `Bearer ${tokenBody.token}`)
             .send(userToCreate)
             .expect(200);
 
-        const { body } = response
+        const projectRequest = await api.post(`/api/projects`)
+            .set('Authorization', `Bearer ${tokenBody.token}`)
+            .send(newProject)
+            .expect(200);
 
-        expect(body.email).toBe(userToCreate.email);
+
+        const reportToCreate: UserReport = {
+            user_id: userRequest.body.id,
+            project_id: projectRequest.body.id,
+            dedication_percentage: 100
+        }
+
+        await api.post(`/api/user-reports`)
+            .set('Authorization', `Bearer ${tokenBody.token}`)
+            .send(reportToCreate)
+            .expect(200);
+
     })
 
-    test('Find all users test', async () => {
-        const response = await api.get(`/api/users?page=0`)
+    test('find all reports test', async () => {
+        const response = await api.get(`/api/user-reports?page=0`)
             .set('Authorization', `Bearer ${tokenBody.token}`)
             .expect(200);
 
         const { body } = response
-
         expect(body.results).toBeTruthy()
     })
 

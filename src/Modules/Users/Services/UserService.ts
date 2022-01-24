@@ -20,6 +20,7 @@ export const createUser = async (user: User): Promise<UserResponse> => {
     const repositoryRequest: User = await UserRepository.createUser(user)
 
     const createdUser: UserResponse = {
+        id: repositoryRequest.id,
         first_name: repositoryRequest.first_name,
         first_lastname: repositoryRequest.first_lastname,
         email: repositoryRequest.email,
@@ -35,6 +36,7 @@ export const findAllUsers = async (page: number): Promise<UserResponse> => {
     repositoryRequest = {
         results: repositoryRequest!!.results.map((it: UserResponse) => {
             return {
+                id:it.id,
                 first_name: it.first_name,
                 first_lastname: it.first_lastname,
                 email: it.email,
